@@ -24,6 +24,10 @@ include_recipe "python::virtualenv"
 
 venv_path = "/home/vagrant/.virtualenvs/orzata"
 
+python_pip "virtualenvwrapper" do
+  action :install
+end
+
 python_virtualenv venv_path do
   owner "vagrant"
   group "vagrant"
@@ -33,11 +37,6 @@ end
 python_pip "django" do
   virtualenv venv_path
   version "1.4.2"
-  action :install
-end
-
-python_pip "virtualenvwrapper" do
-  virtualenv venv_path
   action :install
 end
 
