@@ -21,3 +21,44 @@
 include_recipe "python::#{node['python']['install_method']}"
 include_recipe "python::pip"
 include_recipe "python::virtualenv"
+
+venv_path = "/home/vagrant/.virtualenvs/orzata"
+
+python_virtualenv venv_path do
+  owner "vagrant"
+  group "vagrant"
+  action :create
+end
+
+python_pip "django" do
+  virtualenv venv_path
+  version "1.4.2"
+  action :install
+end
+
+python_pip "virtualenvwrapper" do
+  virtualenv venv_path
+  action :install
+end
+
+python_pip "ipdb" do
+  virtualenv venv_path
+  version "0.6.1"
+  action :install
+end
+
+python_pip "ipython" do
+  virtualenv venv_path
+  version "0.10.2"
+  action :install
+end
+
+python_pip "psycopg2" do
+  virtualenv venv_path
+  action :install
+end
+
+python_pip "numpy" do
+  virtualenv venv_path
+  action :install
+end
